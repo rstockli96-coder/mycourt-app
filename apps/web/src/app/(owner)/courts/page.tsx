@@ -3,7 +3,8 @@ import { redirect } from 'next/navigation'
 import Link from 'next/link'
 import { Card, CardContent } from '@/components/ui/card'
 import { Badge } from '@/components/ui/badge'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 import type { Court, CourtStatus } from '@mycourt/shared'
 
 const STATUS_LABELS: Record<CourtStatus, string> = {
@@ -47,9 +48,9 @@ export default async function CourtsPage() {
           <h1 className="text-2xl font-bold text-gray-900">Mis canchas</h1>
           <p className="mt-1 text-gray-500">{courtList.length} {courtList.length === 1 ? 'cancha registrada' : 'canchas registradas'}</p>
         </div>
-        <Button asChild className="bg-green-600 hover:bg-green-700">
-          <Link href="/(owner)/courts/new">+ Nueva cancha</Link>
-        </Button>
+        <Link href="/(owner)/courts/new" className={cn(buttonVariants(), 'bg-green-600 hover:bg-green-700')}>
+          + Nueva cancha
+        </Link>
       </div>
 
       {courtList.length === 0 ? (
@@ -57,9 +58,9 @@ export default async function CourtsPage() {
           <p className="text-4xl">🏟️</p>
           <h2 className="mt-3 text-lg font-semibold text-gray-900">No tienes canchas registradas</h2>
           <p className="mt-1 text-sm text-gray-500">Agrega tu primera cancha para empezar a recibir reservas</p>
-          <Button asChild className="mt-4 bg-green-600 hover:bg-green-700">
-            <Link href="/(owner)/courts/new">Crear cancha</Link>
-          </Button>
+          <Link href="/(owner)/courts/new" className={cn(buttonVariants(), 'mt-4 bg-green-600 hover:bg-green-700')}>
+            Crear cancha
+          </Link>
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">

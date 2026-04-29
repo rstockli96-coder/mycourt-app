@@ -19,11 +19,11 @@ const courtSchema = z.object({
   description: z.string().optional(),
   address: z.string().min(5, 'Ingresa la dirección completa'),
   district: z.string().min(2, 'Selecciona un distrito'),
-  price_per_hour: z.coerce.number().min(10, 'Mínimo S/. 10').max(500, 'Máximo S/. 500'),
+  price_per_hour: z.number().min(10, 'Mínimo S/. 10').max(500, 'Máximo S/. 500'),
   surface_type: z.enum(['clay', 'grass', 'concrete', 'synthetic', 'carpet']),
-  is_indoor: z.boolean().default(false),
-  has_parking: z.boolean().default(false),
-  has_locker_room: z.boolean().default(false),
+  is_indoor: z.boolean(),
+  has_parking: z.boolean(),
+  has_locker_room: z.boolean(),
 })
 
 type CourtForm = z.infer<typeof courtSchema>
@@ -179,7 +179,7 @@ export default function NewCourtPage() {
                     placeholder="Ej: 60"
                     min={10}
                     max={500}
-                    {...register('price_per_hour')}
+                    {...register('price_per_hour', { valueAsNumber: true })}
                   />
                   {errors.price_per_hour && <p className="text-sm text-red-500">{errors.price_per_hour.message}</p>}
                 </div>

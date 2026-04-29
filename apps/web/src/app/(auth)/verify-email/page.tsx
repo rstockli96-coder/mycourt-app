@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default function VerifyEmailPage() {
   return (
@@ -20,9 +21,9 @@ export default function VerifyEmailPage() {
               hola@mycourt.pe
             </a>
           </p>
-          <Button variant="outline" asChild className="w-full">
-            <Link href="/login">Volver al inicio de sesión</Link>
-          </Button>
+          <Link href="/login" className={cn(buttonVariants({ variant: 'outline' }), 'w-full justify-center')}>
+            Volver al inicio de sesión
+          </Link>
         </CardContent>
       </Card>
     </div>

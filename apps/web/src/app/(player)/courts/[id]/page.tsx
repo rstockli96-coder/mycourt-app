@@ -114,12 +114,10 @@ export default async function CourtDetailPage({ params }: Props) {
               <div className="flex items-center gap-2 text-sm text-gray-600">
                 <span>🏟️</span> {SURFACE_LABELS[court.surface_type] ?? court.surface_type}
               </div>
-              {amenities.map((a) => (
-                (court as Record<string, unknown>)[a.key] && (
-                  <div key={a.key} className="flex items-center gap-2 text-sm text-gray-600">
-                    <span>{a.icon}</span> {a.label}
-                  </div>
-                )
+              {amenities.filter((a) => Boolean((court as Record<string, unknown>)[a.key])).map((a) => (
+                <div key={a.key} className="flex items-center gap-2 text-sm text-gray-600">
+                  <span>{a.icon}</span> {a.label}
+                </div>
               ))}
             </div>
           </div>

@@ -2,7 +2,8 @@ import { createClient } from '@/lib/supabase/server'
 import { redirect } from 'next/navigation'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import Link from 'next/link'
-import { Button } from '@/components/ui/button'
+import { buttonVariants } from '@/components/ui/button'
+import { cn } from '@/lib/utils'
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -53,9 +54,9 @@ export default async function DashboardPage() {
           <h1 className="text-2xl font-bold text-gray-900">Dashboard</h1>
           <p className="mt-1 text-gray-500">Resumen de tu actividad en MyCourt</p>
         </div>
-        <Button asChild className="bg-green-600 hover:bg-green-700">
-          <Link href="/(owner)/courts/new">+ Nueva cancha</Link>
-        </Button>
+        <Link href="/(owner)/courts/new" className={cn(buttonVariants(), 'bg-green-600 hover:bg-green-700')}>
+          + Nueva cancha
+        </Link>
       </div>
 
       {/* Metrics */}
@@ -84,9 +85,9 @@ export default async function DashboardPage() {
             <p className="mt-1 text-sm text-gray-500">
               Crea el perfil de tu cancha para empezar a recibir reservas
             </p>
-            <Button asChild className="mt-4 bg-green-600 hover:bg-green-700">
-              <Link href="/(owner)/courts/new">Crear cancha</Link>
-            </Button>
+            <Link href="/(owner)/courts/new" className={cn(buttonVariants(), 'mt-4 bg-green-600 hover:bg-green-700')}>
+              Crear cancha
+            </Link>
           </CardContent>
         </Card>
       )}
